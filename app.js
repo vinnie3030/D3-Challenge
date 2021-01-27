@@ -32,7 +32,7 @@ function xScale(data, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
     .domain([d3.min(data, d => d[chosenXAxis]) * 0.8,
-      d3.max(data, d => d[chosenXAxis]) * 1.2
+    d3.max(data, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -45,7 +45,7 @@ function yScale(data, chosenYAxis) {
   // create scales
   var yLinearScale = d3.scaleLinear()
     .domain([d3.min(data, d => d[chosenYAxis]) * 0.8,
-      d3.max(data, d => d[chosenYAxis]) * 1.2
+    d3.max(data, d => d[chosenYAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -91,32 +91,32 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis, newYScale, chosenYA
 
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
- 
-  if (chosenXAxis === "poverty" ) {
+
+  if (chosenXAxis === "poverty") {
     var label = "Poverty (%):";
   }
-  else {
+    else {
     var label = "Age (Medium):";
   };
 
-  else {
+    else {
     var label = "Household Income (Medium)";
   }
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
-    .html(function(d) {
+    .html(function (d) {
       return (`${d.abbr}<br>${label} ${d[chosenXAxis]}`);
     });
 
   circlesGroup.call(toolTip);
 
-  circlesGroup.on("mouseover", function(data) {
+  circlesGroup.on("mouseover", function (data) {
     toolTip.show(data);
   })
     // onmouseout event
-    .on("mouseout", function(data, index) {
+    .on("mouseout", function (data, index) {
       toolTip.hide(data);
     });
 
@@ -124,11 +124,11 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("data.csv").then(function(data, err) {
+d3.csv("/assets/data/data.csv").then(function (data, err) {
   if (err) throw err;
 
   // parse data
-  data.forEach(function(data) {
+  data.forEach(function (data) {
     data.poverty = +data.poverty;
     data.healthcare = +data.healthcare;
     data.age = +data.age;
@@ -167,9 +167,9 @@ d3.csv("data.csv").then(function(data, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.[chosenYAxis])
-    .attr("r", 20)
-    .attr("fill", "pink")
-    .attr("opacity", ".5");
+      .attr("r", 20)
+      .attr("fill", "pink")
+      .attr("opacity", ".5");
 
   // Create group for  2 x- axis labels
   var labelsGroup = chartGroup.append("g")
@@ -203,7 +203,7 @@ d3.csv("data.csv").then(function(data, err) {
 
   // x axis labels event listener
   labelsGroup.selectAll("text")
-    .on("click", function() {
+    .on("click", function () {
       // get value of selection
       var value = d3.select(this).attr("value");
       if (value !== chosenXAxis) {
@@ -229,8 +229,8 @@ d3.csv("data.csv").then(function(data, err) {
         // changes classes to change bold text
         if (chosenXAxis === "age") {
           incomeLabel
-          .classed("active", true)
-          .classed("inactive", false);
+            .classed("active", true)
+            .classed("inactive", false);
           ageLabel
             .classed("active", true)
             .classed("inactive", false);
@@ -262,6 +262,6 @@ d3.csv("data.csv").then(function(data, err) {
         }
       }
     });
-}).catch(function(error) {
+}).catch(function (error) {
   console.log(error);
 });
