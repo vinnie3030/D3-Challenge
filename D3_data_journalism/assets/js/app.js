@@ -30,7 +30,7 @@ d3.select("body")
     .style("opacity", 0);
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("data.csv").then(function (data, err) {
+d3.csv("D3_data_journalism/assets/data/data.csv").then(function (data, err) {
     if (err) throw err;
     console.log(healthData)
     // parse data
