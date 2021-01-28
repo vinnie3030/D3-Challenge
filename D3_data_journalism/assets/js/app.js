@@ -46,6 +46,7 @@ function makeResponsive() {
         features.forEach(function (data) {
             data.poverty = +data.poverty;
             data.healthcare = +data.healthcare;
+            data.abbr = +data.abbr;
 
         });
 
