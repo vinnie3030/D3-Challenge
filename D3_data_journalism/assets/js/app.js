@@ -39,7 +39,7 @@ function makeResponsive() {
       .attr("transform", `translate(${margin.left}, ${margin.top})`);
   
     // Import Data
-    d3.csv("/assets/data/data.csv").then(function(features) {
+    d3.csv("./assets/data/data.csv").then(function(features) {
   
       // Step 1: Parse Data/Cast as numbers
       // ==============================
