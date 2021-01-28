@@ -105,18 +105,20 @@ function makeResponsive() {
         //     .attr("font-size", "10px")
         //     .attr("text-anchor", "middle")
         //     .attr("fill", "white");
-        // Append Text to Circles
-        var textGroup = chartGroup.selectAll(".stateText")
-            .data(acsData)
-            .enter()
-            .append("text")
-            .attr("x", d => xLinearScale(d.poverty))
-            .attr("y", d => yLinearScale(d.healthcare * .98))
-            .text(d => (d.abbr))
-            .attr("class", "stateText")
-            .attr("font-size", "12px")
-            .attr("text-anchor", "middle")
-            .attr("fill", "black");
+        
+        
+        // // Append Text to Circles
+        // var textGroup = chartGroup.selectAll(".stateText")
+        //     .data(acsData)
+        //     .enter()
+        //     .append("text")
+        //     .attr("x", d => xLinearScale(d.poverty))
+        //     .attr("y", d => yLinearScale(d.healthcare * .98))
+        //     .text(d => (d.abbr))
+        //     .attr("class", "stateText")
+        //     .attr("font-size", "12px")
+        //     .attr("text-anchor", "middle")
+        //     .attr("fill", "black");
 
 
         // Create axes labels
