@@ -46,7 +46,7 @@ function makeResponsive() {
         features.forEach(function (data) {
             data.poverty = +data.poverty;
             data.healthcare = +data.healthcare;
-            
+
         });
 
         // Step 2: Create scale functions
@@ -77,7 +77,7 @@ function makeResponsive() {
 
         // Step 5: Create Circles
         // ==============================
-        var circlesGroup = chartGroup.selectAll("circle")
+        var circlesGroup = chartGroup.selectAll(".stateCircle")
             .data(features)
             .enter()
             .append("circle")
@@ -105,7 +105,18 @@ function makeResponsive() {
         //     .attr("font-size", "10px")
         //     .attr("text-anchor", "middle")
         //     .attr("fill", "white");
-
+        // Append Text to Circles
+        var textGroup = chartGroup.selectAll(".stateText")
+            .data(acsData)
+            .enter()
+            .append("text")
+            .attr("x", d => xLinearScale(d.poverty))
+            .attr("y", d => yLinearScale(d.healthcare * .98))
+            .text(d => (d.abbr))
+            .attr("class", "stateText")
+            .attr("font-size", "12px")
+            .attr("text-anchor", "middle")
+            .attr("fill", "black");
 
 
         // Create axes labels
